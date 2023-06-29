@@ -23,8 +23,8 @@ class QuickdrawLit(pl.LightningModule):
         out = self(x)
 
         loss = F.nll_loss(out, y)
-        acc = accuracy(out, y, "multiclass", num_classes=self.config["n_classes"])
-        score = f1_score(out, y, "multiclass", num_classes=self.config["n_classes"])
+        acc = accuracy(out, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(out, y, "multiclass", num_classes=len(self.config["classes"]))
 
         logs = {"train_loss": loss, "train_acc": acc, "train_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
@@ -36,8 +36,8 @@ class QuickdrawLit(pl.LightningModule):
         out = self(x)
 
         loss = F.nll_loss(out, y)
-        acc = accuracy(out, y, "multiclass", num_classes=self.config["n_classes"])
-        score = f1_score(out, y, "multiclass", num_classes=self.config["n_classes"])
+        acc = accuracy(out, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(out, y, "multiclass", num_classes=len(self.config["classes"]))
 
         logs = {"val_loss": loss, "val_acc": acc, "val_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
@@ -73,7 +73,7 @@ class QuickdrawLit(pl.LightningModule):
         optimizer = get_optimizer(
             self.config["optimizer"],
             self.parameters(),
-            lr=self.config["learning_rate"],
+            lr=self.config["lr"],
             **self.config["optimizer_kwargs"]
         )
         scheduler = get_scheduler(
