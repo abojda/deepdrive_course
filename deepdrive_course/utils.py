@@ -27,4 +27,4 @@ def stratified_train_test_split(
         test_ds.dataset = copy(dataset)
         test_ds.dataset.transform = test_transform
 
-    return train_ds, test_ds
+    return train_ds, test_ds, train_indices, test_indices
