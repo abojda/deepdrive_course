@@ -25,7 +25,6 @@ class QuickdrawDataset(Dataset):
         self.transform = transform
         self.target_transform = target_transform
 
-        self.file_paths = []
         self.targets = []
 
         self._download()
@@ -45,6 +44,8 @@ class QuickdrawDataset(Dataset):
                 urllib.request.urlretrieve(url, file_path)
 
     def _setup(self):
+        self.file_paths = []
+
         for class_name in self.classes:
             file_path = Path(self.root, f"{class_name}.npy")
             data = np.load(file_path, allow_pickle=True)
@@ -79,6 +80,8 @@ class QuickdrawDataset(Dataset):
 # Version with images loaded into memory
 class QuickdrawDatasetInMemory(QuickdrawDataset):
     def _setup(self):
+        self.images = []
+
         for class_name in self.classes:
             file_path = Path(self.root, f"{class_name}.npy")
             data = np.load(file_path, allow_pickle=True)
