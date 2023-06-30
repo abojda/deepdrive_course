@@ -258,6 +258,28 @@ class CNN_Dropout_MaxPool2(nn.Module):
         return self.model(x)
 
 
+class CNNMed_MaxPool2_Dropout(nn.Module):
+    def __init__(self, ratio, n_classes=10):
+        super().__init__()
+
+        self.model = nn.Sequential(
+            nn.Conv2d(1, 8, (3, 3)),
+            nn.ReLU(),
+            nn.Conv2d(8, 32, (3, 3)),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            nn.Dropout(ratio),
+            nn.Conv2d(32, 128, (3, 3)),
+            nn.ReLU(),
+            nn.Flatten(),
+            nn.Linear(10 * 10 * 128, n_classes),
+            nn.LogSoftmax(dim=1),
+        )
+
+    def forward(self, x):
+        return self.model(x)
+
+
 class CNNBig(nn.Module):
     def __init__(self, n_classes=10):
         super().__init__()
