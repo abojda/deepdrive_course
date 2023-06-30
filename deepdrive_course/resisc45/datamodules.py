@@ -13,6 +13,7 @@ class RESISC45DataModule(pl.LightningDataModule):
         train_transform=None,
         test_transform=None,
         target_transform=None,
+        download=True,
         albumentations=False,
     ):
         super().__init__()
@@ -21,10 +22,12 @@ class RESISC45DataModule(pl.LightningDataModule):
         self.train_transform = train_transform
         self.test_transform = test_transform
         self.target_transform = target_transform
+        self.download = download
         self.RESISC45 = RESISC45Albumentations if albumentations else RESISC45
 
     def prepare_data(self):
-        self.RESISC45(root=self.root, download=True)
+        if self.download:
+            self.RESISC45(root=self.root, download=True)
 
     def setup(self, stage):
         full_ds = self.RESISC45(
