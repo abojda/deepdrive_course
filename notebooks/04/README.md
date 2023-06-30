@@ -13,8 +13,8 @@ Models with aforementioned regularization techniques were trained on the full da
 
 `cnn-maxpool2-dropout_0.3` and `cnnmed-maxpool2-dropout_0.3` have different number of convolutional filters in each of the layers.
 
-| Model                         | Number of parameters | Model architecture      |
-| ----------------------------- | :------------------- | ----------------------- |
-| `cnn-baseline`                | ~160k parameters     | [CNN](https://github.com/abojda/deepdrive_course/blob/main/deepdrive_course/quickdraw/models.py#L26) |
-| `cnn-maxpool2-dropout_0.3`    | ~38k parameters      | [CNN_MaxPool2_Dropout](https://github.com/abojda/deepdrive_course/blob/main/deepdrive_course/quickdraw/models.py#L217) |
+| Model                         | Number of parameters | Model architecture                                                                                                        |
+| ----------------------------- | :------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `cnn-baseline`                | ~160k parameters     | [CNN](https://github.com/abojda/deepdrive_course/blob/main/deepdrive_course/quickdraw/models.py#L26)                      |
+| `cnn-maxpool2-dropout_0.3`    | ~38k parameters      | [CNN_MaxPool2_Dropout](https://github.com/abojda/deepdrive_course/blob/main/deepdrive_course/quickdraw/models.py#L217)    |
 | `cnnmed-maxpool2-dropout_0.3` | ~167k parameters     | [CNNMed_MaxPool2_Dropout](https://github.com/abojda/deepdrive_course/blob/main/deepdrive_course/quickdraw/models.py#L261) |

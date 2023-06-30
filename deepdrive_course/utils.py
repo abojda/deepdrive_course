@@ -2,12 +2,17 @@ from copy import copy
 from io import BytesIO
 
 import matplotlib.pyplot as plt
+import pytorch_lightning as pl
 import seaborn as sns
+import timm
 import torch
 from PIL import Image
+from pytorch_lightning.utilities.model_summary import ModelSummary
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Subset
 from torchmetrics.functional.classification import confusion_matrix
+
+from mega import Mega
 
 
 def stratified_train_test_split(
@@ -36,9 +41,11 @@ def stratified_train_test_split(
 
     return train_ds, test_ds, train_indices, test_indices
 
+
 def get_optimizer(name, model_parameters, **kwargs):
     optimizer_cls = getattr(torch.optim, name)
     return optimizer_cls(model_parameters, **kwargs)
+
 
 def get_scheduler(name, **kwargs):
     if name == None:
@@ -77,3 +84,46 @@ def confusion_matrix_image(
     )
 
     return plot_to_pil_image(fig)
+
+
+def freeze_params(model):
+    for param in model.parameters():
+        param.requires_grad = False
+
+
+def unfreeze_params(model):
+    for param in model.parameters():
+        param.requires_grad = True
+
+
+def pl_print_model_summary(model, depth=1):
+    summary = ModelSummary(model, max_depth=depth)
+    print(summary)
+
+
+def pl_find_max_batch_size(model, datamodule):
+    trainer = pl.Trainer(max_epochs=1)
+    tuner = pl.tuner.Tuner(trainer)
+    max_batch_size = tuner.scale_batch_size(model, mode="power", datamodule=datamodule)
+    return max_batch_size
+
+
+def timm_prepare_params_for_training(timm_model, training_type):
+    if training_type == "full" or training_type == "finetuning":
+        unfreeze_params(timm_model)
+    elif training_type == "transfer_learning":
+        freeze_params(timm_model)
+        unfreeze_params(timm_model.get_classifier())
+    else:
+        raise ValueError(training_type)
+
+
+def timm_get_pretrained_data_transform(timm_model):
+    timm_cfg = timm.data.resolve_data_config(timm_model.pretrained_cfg)
+    return timm.data.create_transform(**timm_cfg)
+
+
+def download_from_mega_nz(url):
+    m = Mega().login()
+    path = m.download_url(url)
+    return path

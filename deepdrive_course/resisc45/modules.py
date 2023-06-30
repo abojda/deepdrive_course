@@ -7,7 +7,7 @@ from torchmetrics.functional.classification import accuracy, f1_score
 from deepdrive_course.utils import confusion_matrix_image, get_optimizer, get_scheduler
 
 
-class QuickdrawLit(pl.LightningModule):
+class ResiscLit(pl.LightningModule):
     def __init__(self, model, config):
         super().__init__()
         self.model = model
@@ -18,11 +18,14 @@ class QuickdrawLit(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         x, y = batch
-        out = self(x)
+        logits = self(x)
+        probas = F.log_softmax(logits, dim=1)
 
-        loss = F.nll_loss(out, y)
-        acc = accuracy(out, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(out, y, "multiclass", num_classes=len(self.config["classes"]))
+        loss = F.cross_entropy(logits, y)
+        acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(
+            probas, y, "multiclass", num_classes=len(self.config["classes"])
+        )
 
         logs = {"train_loss": loss, "train_acc": acc, "train_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
@@ -31,16 +34,19 @@ class QuickdrawLit(pl.LightningModule):
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
-        out = self(x)
+        logits = self(x)
+        probas = F.log_softmax(logits, dim=1)
 
-        loss = F.nll_loss(out, y)
-        acc = accuracy(out, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(out, y, "multiclass", num_classes=len(self.config["classes"]))
+        loss = F.cross_entropy(logits, y)
+        acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(
+            probas, y, "multiclass", num_classes=len(self.config["classes"])
+        )
 
         logs = {"val_loss": loss, "val_acc": acc, "val_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
 
-        self.probas.append(out.detach().cpu())
+        self.probas.append(probas.detach().cpu())
         self.targets.append(y.detach().cpu())
 
         return loss
