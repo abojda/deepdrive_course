@@ -74,8 +74,9 @@ class QuickdrawLit(pl.LightningModule):
             lr=self.config["lr"],
             **self.config["optimizer_kwargs"]
         )
+
         scheduler = get_scheduler(
-            self.config["scheduler"], **self.config["scheduler_kwargs"]
+            self.config["scheduler"], optimizer, self.config["scheduler_interval"], **self.config["scheduler_kwargs"]
         )
 
         if scheduler == None:

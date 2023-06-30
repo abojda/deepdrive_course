@@ -15,9 +15,7 @@ from torchmetrics.functional.classification import confusion_matrix
 from mega import Mega
 
 
-def stratified_train_test_split(
-    dataset, train_size, train_transform=None, test_transform=None, random_state=42
-):
+def stratified_train_test_split(dataset, train_size, train_transform=None, test_transform=None, random_state=42):
     train_indices, test_indices, _, _ = train_test_split(
         range(len(dataset)),
         range(len(dataset)),
@@ -47,12 +45,17 @@ def get_optimizer(name, model_parameters, **kwargs):
     return optimizer_cls(model_parameters, **kwargs)
 
 
-def get_scheduler(name, **kwargs):
+def get_scheduler(name, optimizer, interval="epoch", **kwargs):
     if name == None:
         return None
 
     scheduler_cls = getattr(torch.optim.lr_scheduler, name)
-    return scheduler_cls(**kwargs)
+    scheduler = scheduler_cls(optimizer, **kwargs)
+
+    return {
+        "scheduler": scheduler,
+        "interval": interval,
+    }
 
 
 def plot_to_pil_image(figure):
@@ -63,9 +66,7 @@ def plot_to_pil_image(figure):
     return Image.open(buf)
 
 
-def confusion_matrix_image(
-    preds, target, classes, current_epoch, task="multiclass", normalize="true"
-):
+def confusion_matrix_image(preds, target, classes, current_epoch, task="multiclass", normalize="true"):
     cm = confusion_matrix(
         preds=preds,
         target=target,
@@ -79,9 +80,7 @@ def confusion_matrix_image(
     ax.set_xticklabels(classes, rotation=0)
     ax.set_yticklabels(classes, rotation=0, ha="center", va="center")
     ax.tick_params(axis="y", pad=40)
-    ax.set(
-        xlabel="Predicted label", ylabel="True label", title=f"Epoch {current_epoch}"
-    )
+    ax.set(xlabel="Predicted label", ylabel="True label", title=f"Epoch {current_epoch}")
 
     return plot_to_pil_image(fig)
 
