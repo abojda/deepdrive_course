@@ -38,7 +38,7 @@ class RESISC45DataModule(pl.LightningDataModule):
             dataset=full_ds,
             train_size=0.8,
             train_transform=self.train_transform,
-            test_trainsform=self.test_transform,
+            test_transform=self.test_transform,
         )
 
         if stage == "test":
