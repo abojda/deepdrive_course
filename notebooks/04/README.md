@@ -1,5 +1,5 @@
 ## Experimenting on 10% of the dataset
-First set of experiments was run on 10% of the dataset to speed up the training. Results of these experiments are available as an[interactive Weights & Biases report](https://api.wandb.ai/links/alebojd/qguswr45) or as a [rendered PDF](results_10perc.pdf).
+First set of experiments was run on 10% of the dataset to speed up the training. Results of these experiments are available as an [interactive Weights & Biases report](https://api.wandb.ai/links/alebojd/qguswr45) or as a [rendered PDF](results_10perc.pdf).
 
 The most promising were models with max pooling and dropout (ratio=0.3) after second CNN layer.
 
