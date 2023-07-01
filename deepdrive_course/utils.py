@@ -6,13 +6,12 @@ import pytorch_lightning as pl
 import seaborn as sns
 import timm
 import torch
+from mega import Mega
 from PIL import Image
 from pytorch_lightning.utilities.model_summary import ModelSummary
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Subset
 from torchmetrics.functional.classification import confusion_matrix
-
-from mega import Mega
 
 
 def stratified_train_test_split(dataset, train_size, train_transform=None, test_transform=None, random_state=42):
@@ -46,7 +45,7 @@ def get_optimizer(name, model_parameters, **kwargs):
 
 
 def get_scheduler(name, optimizer, interval="epoch", **kwargs):
-    if name == None:
+    if name is None:
         return None
 
     scheduler_cls = getattr(torch.optim.lr_scheduler, name)

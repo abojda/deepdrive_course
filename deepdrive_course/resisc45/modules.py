@@ -23,9 +23,7 @@ class ResiscLit(pl.LightningModule):
 
         loss = F.cross_entropy(logits, y)
         acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(
-            probas, y, "multiclass", num_classes=len(self.config["classes"])
-        )
+        score = f1_score(probas, y, "multiclass", num_classes=len(self.config["classes"]))
 
         logs = {"train_loss": loss, "train_acc": acc, "train_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
@@ -39,9 +37,7 @@ class ResiscLit(pl.LightningModule):
 
         loss = F.cross_entropy(logits, y)
         acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(
-            probas, y, "multiclass", num_classes=len(self.config["classes"])
-        )
+        score = f1_score(probas, y, "multiclass", num_classes=len(self.config["classes"]))
 
         logs = {"val_loss": loss, "val_acc": acc, "val_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
@@ -75,16 +71,13 @@ class ResiscLit(pl.LightningModule):
 
     def configure_optimizers(self):
         optimizer = get_optimizer(
-            self.config["optimizer"],
-            self.parameters(),
-            lr=self.config["lr"],
-            **self.config["optimizer_kwargs"]
+            self.config["optimizer"], self.parameters(), lr=self.config["lr"], **self.config["optimizer_kwargs"]
         )
         scheduler = get_scheduler(
             self.config["scheduler"], optimizer, self.config["scheduler_interval"], **self.config["scheduler_kwargs"]
         )
 
-        if scheduler == None:
+        if scheduler is None:
             return optimizer
         else:
             return {"optimizer": optimizer, "lr_scheduler": scheduler}
