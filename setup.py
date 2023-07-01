@@ -13,6 +13,7 @@ setup(
         "seaborn",
         "einops",
         "timm",
+        "optuna",
         "gdown",
         "patool",
         "albumentations",
