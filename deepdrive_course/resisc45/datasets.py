@@ -58,6 +58,8 @@ class RESISC45(Dataset):
         "wetland",
     ]
 
+    class_to_idx = {c: i for i, c in enumerate(classes)}
+
     def __init__(self, root, transform=None, target_transform=None, download=False):
         self.root = root
         self.transform = transform
