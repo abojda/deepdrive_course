@@ -12,6 +12,7 @@ class ResiscLit(pl.LightningModule):
         super().__init__()
         self.model = model
         self.config = config
+        self.save_hyperparameters()
 
     def forward(self, x):
         return self.model(x)
