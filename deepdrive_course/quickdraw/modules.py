@@ -1,10 +1,10 @@
-import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
-import wandb
-from torchmetrics.functional.classification import accuracy, f1_score
 
+import pytorch_lightning as pl
+import wandb
 from deepdrive_course.utils import confusion_matrix_image, get_optimizer, get_scheduler
+from torchmetrics.functional.classification import accuracy, f1_score
 
 
 class QuickdrawLit(pl.LightningModule):
