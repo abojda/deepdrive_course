@@ -2,15 +2,16 @@ from copy import copy
 from io import BytesIO
 
 import matplotlib.pyplot as plt
-import pytorch_lightning as pl
 import seaborn as sns
 import timm
 import torch
-from mega import Mega
 from PIL import Image
-from pytorch_lightning.utilities.model_summary import ModelSummary
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Subset
+
+import pytorch_lightning as pl
+from mega import Mega
+from pytorch_lightning.utilities.model_summary import ModelSummary
 from torchmetrics.functional.classification import confusion_matrix
 
 

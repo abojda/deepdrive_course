@@ -1,6 +1,6 @@
-from deepdrive_course.utils import torch_normalize_img, plot_to_pil_image
-from captum.attr import LayerGradCam, LayerAttribution, GuidedGradCam
+from captum.attr import GuidedGradCam, LayerAttribution, LayerGradCam
 from captum.attr import visualization as viz
+from deepdrive_course.utils import torch_normalize_img
 from einops import rearrange
 
 
@@ -15,15 +15,15 @@ def gradcam_analysis(img, label, model, layer):
     img_normalized_np = rearrange(img_normalized, "c h w -> h w c").numpy()
     upsampled_attributions_np = rearrange(upsampled_attributions, "1 c h w -> h w c").detach().cpu().numpy()
 
-    fig, ax = viz.visualize_image_attr_multiple(
+    return viz.visualize_image_attr_multiple(
         upsampled_attributions_np,
         img_normalized_np,
-        methods=["original_image", "heat_map", "blended_heat_map"],
-        signs=["all", "positive", "positive"],
-        titles=["Original", "Positive heatmap", "Positive blended"],
+        methods=["original_image", "heat_map", "blended_heat_map", "heat_map", "blended_heat_map"],
+        signs=["all", "positive", "positive", "negative", "negative"],
+        titles=["Original", "Positive heatmap", "Positive blended", "Negative heatmap", "Negative blended"],
+        use_pyplot=False,
+        fig_size=(10, 3.5),
     )
-
-    return plot_to_pil_image(figure=fig)
 
 
 def guided_gradcam_analysis(img, label, model, layer):
@@ -36,12 +36,12 @@ def guided_gradcam_analysis(img, label, model, layer):
     img_normalized_np = rearrange(img_normalized, "c h w -> h w c").numpy()
     attributions_np = rearrange(attributions, "1 c h w -> h w c").detach().cpu().numpy()
 
-    fig, ax = viz.visualize_image_attr_multiple(
+    return viz.visualize_image_attr_multiple(
         attributions_np,
         img_normalized_np,
-        methods=["original_image", "heat_map", "blended_heat_map"],
-        signs=["all", "positive", "positive"],
-        titles=["Original", "Positive heatmap", "Positive blended"],
+        methods=["original_image", "heat_map", "blended_heat_map", "heat_map", "blended_heat_map"],
+        signs=["all", "positive", "positive", "negative", "negative"],
+        titles=["Original", "Positive heatmap", "Positive blended", "Negative heatmap", "Negative blended"],
+        use_pyplot=False,
+        fig_size=(10, 3.5),
     )
-
-    return plot_to_pil_image(figure=fig)
