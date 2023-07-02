@@ -125,3 +125,23 @@ def download_from_mega_nz(url):
     m = Mega().login()
     path = m.download_url(url)
     return path
+
+
+def torch_normalize_img(img_tensor):
+    img_tensor = img_tensor.clone()
+    shape = img_tensor.shape
+
+    img_tensor = img_tensor.view(3, -1)
+    _min = img_tensor.min(dim=1, keepdim=True)[0]
+    _max = img_tensor.max(dim=1, keepdim=True)[0]
+    img_tensor = (img_tensor - _min) / (_max - _min)
+
+    return img_tensor.view(shape)
+
+
+def topk_analysis(probas, classes, k=5):
+    top_probas, top_idxs = torch.topk(probas, k=k)
+    top_probas, top_idxs = top_probas.tolist(), top_idxs.tolist()
+
+    for p, idx in zip(top_probas, top_idxs):
+        print(f"[{p:>6.1%}] {classes[idx]}")
