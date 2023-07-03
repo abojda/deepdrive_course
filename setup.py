@@ -5,6 +5,7 @@ setup(
     version="1.0.0",
     packages=find_packages(),
     install_requires=[
+        "numpy",
         "torch",
         "pytorch-lightning",
         "wandb",
@@ -15,6 +16,7 @@ setup(
         "timm",
         "optuna",
         "lightly",
+        "fiftyone",
         "gdown",
         "patool",
         "albumentations",

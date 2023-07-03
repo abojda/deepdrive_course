@@ -13,11 +13,23 @@ Click on a chapter number to go to the notebooks and results for a given chapter
 | [07](notebooks/07) | Run hyperparamter optimization (e.g. Optuna) on models from the two previous chapters             | Optuna, PL, TIMM, W&B                          |
 | [08](notebooks/08) | Interpretability analysis (e.g. occlusion sensitivity and GradCAM) for models from chapters 05-07 | Captum, PL, TIMM, W&B                          |
 | [09](notebooks/09) | Run Self-Supervised Learning (SSL) on unlabeled dataset as a pretraining for supervised model     | Lightly, PL, TIMM, W&B                         |
-| [10](notebooks/10) | Binary classification with imbalanced dataset (incorporating weighted loss and balanced accuracy) | PL, TIMM, W&B                                  |
+| [10](notebooks/10) | Binary classification with imbalanced dataset (incorporating weighted loss and balanced accuracy) | PL, TIMM, W&B, FiftyOne                        |
 
 
 # `deepdrive_course` library
 The part of the code was put into the [`deepdrive_course`](deepdrive_course) library to reuse the code and make the notebooks more readable.
+
+## Running notebooks in Google Colab
+All notebooks using `deepdrive_course` library have the following snippet in the beginning.
+```python
+import sys
+in_colab = "google.colab" in sys.modules
+
+if in_colab:
+  !git clone https://github.com/abojda/deepdrive_course.git dd_course
+  !pip install dd_course/ -q
+```
+**If notebook is run from the Google Colab, this reposity is automatically cloned and library is installed.**
 
 ## Running notebooks locally
 To run notebooks locally, `deepdrive_course` must be installed by hand.
@@ -37,18 +49,4 @@ pip install deepdrive_course/    # Regular install
 ```
 
 It is recommended to use virtual environment (venv, conda, ...) to avoid dependency conflicts with other projects.
-
-
-## Running notebooks in Google Colab
-All notebooks using `deepdrive_course` library have the following snippet in the beginning.
-```python
-import sys
-in_colab = "google.colab" in sys.modules
-
-if in_colab:
-  !git clone https://github.com/abojda/deepdrive_course.git dd_course
-  !pip install dd_course/ -q
-```
-**If notebook is run from Google Colab, this reposity is automatically cloned and library is installed.**
-
 
