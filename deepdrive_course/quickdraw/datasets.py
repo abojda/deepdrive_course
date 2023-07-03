@@ -4,10 +4,9 @@ from pathlib import Path
 from typing import Callable, Optional
 
 import numpy as np
+from einops import rearrange
 from PIL import Image
 from torch.utils.data import Dataset
-
-from einops import rearrange
 
 
 # Version with images saved into .png files and loaded one-by-one

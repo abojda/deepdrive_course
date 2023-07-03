@@ -1,9 +1,10 @@
-from torchmetrics.functional.classification import accuracy, precision, recall
-from deepdrive_course.utils import get_optimizer, get_scheduler
-from sklearn.metrics import balanced_accuracy_score
+import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
-import pytorch_lightning as pl
+from sklearn.metrics import balanced_accuracy_score
+from torchmetrics.functional.classification import accuracy, precision, recall
+
+from deepdrive_course.utils import get_optimizer, get_scheduler
 
 
 class LitBinaryClassifier(pl.LightningModule):

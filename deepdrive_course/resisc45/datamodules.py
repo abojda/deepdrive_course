@@ -1,6 +1,6 @@
+import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 
-import pytorch_lightning as pl
 from deepdrive_course.resisc45.datasets import RESISC45, RESISC45Albumentations
 from deepdrive_course.utils import stratified_train_test_split
 

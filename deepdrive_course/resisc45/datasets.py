@@ -2,11 +2,10 @@ import os
 import shutil
 
 import cv2
-from PIL import Image
-from torch.utils.data import Dataset
-
 import gdown
 import patoolib
+from PIL import Image
+from torch.utils.data import Dataset
 
 
 class RESISC45(Dataset):

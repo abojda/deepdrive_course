@@ -1,7 +1,8 @@
 from captum.attr import GuidedGradCam, LayerAttribution, LayerGradCam, Occlusion
 from captum.attr import visualization as viz
-from deepdrive_course.utils import torch_normalize_img
 from einops import rearrange
+
+from deepdrive_course.utils import torch_normalize_img
 
 
 def visualize_attributions(attributions, img):

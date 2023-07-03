@@ -1,10 +1,10 @@
+import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
-
-import pytorch_lightning as pl
 import wandb
-from deepdrive_course.utils import confusion_matrix_image, get_optimizer, get_scheduler
 from torchmetrics.functional.classification import accuracy, f1_score
+
+from deepdrive_course.utils import confusion_matrix_image, get_optimizer, get_scheduler
 
 
 class ResiscLit(pl.LightningModule):

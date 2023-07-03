@@ -1,10 +1,11 @@
+import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
-import pytorch_lightning as pl
-from lightly.models.modules import SimCLRProjectionHead
 from lightly.loss import NTXentLoss
-from deepdrive_course.utils import get_optimizer, get_scheduler
+from lightly.models.modules import SimCLRProjectionHead
 from torchmetrics.functional.classification import accuracy, f1_score
+
+from deepdrive_course.utils import get_optimizer, get_scheduler
 
 
 class LitSimCLR(pl.LightningModule):
