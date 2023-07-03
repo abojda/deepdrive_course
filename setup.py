@@ -14,10 +14,11 @@ setup(
         "einops",
         "timm",
         "optuna",
+        "lightly",
         "gdown",
         "patool",
         "albumentations",
         "opencv-python",
-        "mega.py"
+        "mega.py",
     ],
 )
