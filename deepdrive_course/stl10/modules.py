@@ -80,7 +80,7 @@ class LitClassifier(pl.LightningModule):
         metrics = {"train_loss": loss, "train_acc": acc, "train_f1_score": score}
         self.log_dict(metrics, on_step=False, on_epoch=True, logger=True)
 
-        return metrics
+        return loss
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
