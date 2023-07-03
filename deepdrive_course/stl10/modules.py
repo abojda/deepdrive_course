@@ -10,7 +10,7 @@ class LitSimCLR(pl.LightningModule):
         self.config = config
 
         self.backbone = backbone
-        self.simclr_head = SimCLRProjectionHead(config["hidden_dim"], config["hidden_dim"], 128)
+        self.simclr_head = SimCLRProjectionHead(config["input_dim"], config["hidden_dim"], config["output_dim"])
         self.loss = NTXentLoss()
 
         self.save_hyperparameters(ignore=["backbone"])
