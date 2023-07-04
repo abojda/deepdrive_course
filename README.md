@@ -14,7 +14,8 @@ Click on a chapter number to go to the notebooks and results for a given chapter
 | [08](notebooks/08) | Interpretability analysis (e.g. occlusion sensitivity and GradCAM) for models from chapters 05-07 | Captum, PL, TIMM, W&B                          |
 | [09](notebooks/09) | Run Self-Supervised Learning (SSL) on unlabeled dataset as a pretraining for supervised model     | Lightly, PL, TIMM, W&B                         |
 | [10](notebooks/10) | Binary classification with imbalanced dataset (incorporating weighted loss and balanced accuracy) | PL, TIMM, W&B, FiftyOne                        |
-| [12](notebooks/12) | Demo deployment of one of the models developed in the previous chapters                           | Gradio, PyTorch                                         |
+| [11](notebooks/11) | Model optimization (e.g. pruning or quantization)                                                 | Intel Neural Compressor, PyTorch               |
+| [12](notebooks/12) | Demo deployment of one of the models developed in the previous chapters                           | Gradio, PyTorch                                |
 
 
 # `deepdrive_course` library
