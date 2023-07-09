@@ -9,4 +9,4 @@ Training results of ResNet-50 models for RESISC45 image classification are avail
 - `resnet50-ft` - training with Imagenet pre-trained weights (all layers unfrozen)
 - `resnet50-tl-ft` - continuation of `resnet50-tl` with all layers unfrozen
 
-![resnet50_results](resnet50_results.png)
+![resnet50_results](img/resnet50_results.png)

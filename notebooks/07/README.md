@@ -12,11 +12,11 @@ Following parameters were designated for optimization:
 
 Study was run for 37 trials on 10% of the dataset for faster training. Optimization history is presented on the image below.
 
-![optimization_history](optimization_history.png)
+![optimization_history](img/optimization_history.png)
 
 The most promising configuration (RMSprop, dropout=0.35, lr=0.000165) was used to train model on the full dataset -- results are presented on the image.
 
-![best_optuna_model](best_optuna_model.png)
+![best_optuna_model](img/best_optuna_model.png)
 
 Since we selected only a small subset of parameters for optimization we don't see huge improvement compared to the reference run from chapter 05 (`resnet50-tl-ft`), but the training is definitely more stable. Also, introducing OneCyclerLR scheduler (`resnet50-tl-ft_onecycle_0.001-drop_0.3` from chapter 06) defeats the best Optuna model, since Optuna models haven't used any LR scheduler.
 

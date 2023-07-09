@@ -11,7 +11,7 @@ All below models are finetuned (all layers unfrozen) from transfer learning run 
 3. `resnet50-tl-ft_onecycle_lr0.0005-drop_0.3-basic_aug` - training with simple `Albumentations` augmentation pipeline defined [here]()
 4. `resnet50-tl-ft_onecycle_lr0.0005-drop_0.3-randaugment` - training with `torchvision.RandAugment(num_ops=3)`
 
-![augmentation_results](augmentation_results.png)
+![augmentation_results](img/augmentation_results.png)
 
 We can see that data augmentation improved validation accuracy:
 - by ~1.5 percentage points for simple handcrafted pipeline
