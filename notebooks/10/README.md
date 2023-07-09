@@ -1,3 +1,7 @@
+# Open in Google Colab
+`openimages_binary_pl.ipynb`: <a target="_blank" href="https://colab.research.google.com/github/abojda/deepdrive_course/blob/main/notebooks/10/10.openimages_binary_pl.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+# Results
 Two "similar" classes from OpenImages dataset were selected to form imbalanced binary classification problem.
 
 Classes:

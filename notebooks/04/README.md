@@ -1,9 +1,12 @@
-## Experimenting on 10% of the dataset
+# Open in Google Colab
+`quickdraw_pl.ipynb`: <a target="_blank" href="https://colab.research.google.com/github/abojda/deepdrive_course/blob/main/notebooks/04/04.quickdraw_pl.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+# Experimenting on 10% of the dataset
 First set of experiments was run on 10% of the dataset to speed up the training. Results of these experiments are available as an [interactive Weights & Biases report](https://api.wandb.ai/links/alebojd/qguswr45) or as a [rendered PDF](results_10perc.pdf).
 
 The most promising were models with max pooling and dropout (ratio=0.3) after second CNN layer.
 
-## Experimenting on the full dataset
+# Experimenting on the full dataset
 Models with aforementioned regularization techniques were trained on the full dataset. Results of these experiments are also available as an [interactive Weights & Biases report](https://api.wandb.ai/links/alebojd/tmxrtnjz) or as a [rendered PDF](results_full.pdf). 
 
 **Using regularization techniques, we've managed to:**

@@ -1,4 +1,9 @@
+# Open in Google Colab
+`resisc_pl_optuna.ipynb`: <a target="_blank" href="https://colab.research.google.com/github/abojda/deepdrive_course/blob/main/notebooks/07/07.resisc_pl_optuna.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
+`resisc_optuna_analysis.ipynb`: <a target="_blank" href="https://colab.research.google.com/github/abojda/deepdrive_course/blob/main/notebooks/07/resisc_optuna_analysis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+# Results
 Configuration dictionary was moved inside `objective` function required by Optuna to easily adapt previous training setup to HPO.
 Following parameters were designated for optimization:
 - `timm_dropout = trial.suggest_float('dropout', 0.0, 0.7)`

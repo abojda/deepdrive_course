@@ -1,3 +1,7 @@
+# Open in Google Colab
+`resisc_pl_augmentations.ipynb`: <a target="_blank" href="https://colab.research.google.com/github/abojda/deepdrive_course/blob/main/notebooks/06/06.resisc_pl_augmentations.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+# Results
 Training results with and without data augmentation are availables as an [interactive Weights & Biases report](https://api.wandb.ai/links/alebojd/wm3cnse9) or in the form of an image below.
 
 All below models are finetuned (all layers unfrozen) from transfer learning run (`resnet50-tl` in chapter 05). Trainings 2-4 use OneCycleLR scheduler for training stability and also apply dropout with 0.3 probability.
