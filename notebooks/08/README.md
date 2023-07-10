@@ -9,16 +9,16 @@ it is especially worth paying attention to incorrectly classified images - we ca
 
 ## Misclassified images
 ### Misclassified example #1
-![](img/wrong_1_occlusion.png)
-![](img/wrong_1_gradcam.png)
-
-### Misclassified example #2
 ![](img/wrong_2_occlusion.png)
 ![](img/wrong_2_gradcam.png)
 
-### Misclassified example #3
+### Misclassified example #2
 ![](img/wrong_3_occlusion.png)
 ![](img/wrong_3_gradcam.png)
+
+### Misclassified example #3
+![](img/wrong_1_occlusion.png)
+![](img/wrong_1_gradcam.png)
 
 ## Propery classified images
 ### Propery classified example #1
