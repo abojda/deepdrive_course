@@ -72,11 +72,11 @@ class LitClassifier(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         x, y = batch
         logits = self(x)
-        log_probas = F.log_softmax(logits, dim=1)
+        probas = F.softmax(logits, dim=1)
 
         loss = F.cross_entropy(logits, y)
-        acc = accuracy(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(probas, y, "multiclass", num_classes=len(self.config["classes"]))
 
         metrics = {"train_loss": loss, "train_acc": acc, "train_f1_score": score}
         self.log_dict(metrics, on_step=False, on_epoch=True, logger=True)
@@ -86,11 +86,11 @@ class LitClassifier(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         logits = self(x)
-        log_probas = F.log_softmax(logits, dim=1)
+        probas = F.softmax(logits, dim=1)
 
         loss = F.cross_entropy(logits, y)
-        acc = accuracy(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(probas, y, "multiclass", num_classes=len(self.config["classes"]))
 
         metrics = {"val_loss": loss, "val_acc": acc, "val_f1_score": score}
         self.log_dict(metrics, on_step=False, on_epoch=True, logger=True)

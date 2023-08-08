@@ -20,11 +20,11 @@ class ResiscLit(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         x, y = batch
         logits = self(x)
-        log_probas = F.log_softmax(logits, dim=1)
+        probas = F.softmax(logits, dim=1)
 
         loss = F.cross_entropy(logits, y)
-        acc = accuracy(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(probas, y, "multiclass", num_classes=len(self.config["classes"]))
 
         logs = {"train_loss": loss, "train_acc": acc, "train_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
@@ -34,16 +34,16 @@ class ResiscLit(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         logits = self(x)
-        log_probas = F.log_softmax(logits, dim=1)
+        probas = F.softmax(logits, dim=1)
 
         loss = F.cross_entropy(logits, y)
-        acc = accuracy(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(probas, y, "multiclass", num_classes=len(self.config["classes"]))
 
         logs = {"val_loss": loss, "val_acc": acc, "val_f1_score": score}
         self.log_dict(logs, on_step=False, on_epoch=True, logger=True)
 
-        self.probas.append(torch.exp(log_probas).detach().cpu())
+        self.probas.append(probas.detach().cpu())
         self.targets.append(y.detach().cpu())
 
         return loss
@@ -77,11 +77,10 @@ class ResiscLit(pl.LightningModule):
     def test_step(self, batch, batch_idx):
         x, y = batch
         logits = self(x)
-        log_probas = F.log_softmax(logits, dim=1)
-        probas = torch.exp(log_probas)
+        probas = F.softmax(logits, dim=1)
 
         true_labels = y.detach().cpu().numpy()
-        pred_labels = torch.argmax(log_probas, dim=1).detach().cpu().numpy()
+        pred_labels = torch.argmax(probas, dim=1).detach().cpu().numpy()
 
         misclassified_idx = [i for i, (true, pred) in enumerate(zip(true_labels, pred_labels)) if true != pred]
         properly_classified_idx = [i for i, (true, pred) in enumerate(zip(true_labels, pred_labels)) if true == pred]
@@ -103,8 +102,8 @@ class ResiscLit(pl.LightningModule):
             self.test_properly_classified.append((img, pred_label, true_label, prob))
 
         loss = F.cross_entropy(logits, y)
-        acc = accuracy(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
-        score = f1_score(log_probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        acc = accuracy(probas, y, "multiclass", num_classes=len(self.config["classes"]))
+        score = f1_score(probas, y, "multiclass", num_classes=len(self.config["classes"]))
 
         metrics = {"test_loss": loss, "test_acc": acc, "test_f1_score": score}
         self.log_dict(metrics, on_step=False, on_epoch=True, logger=True)

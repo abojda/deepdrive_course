@@ -10,7 +10,7 @@ Click on a chapter number to go to the notebooks and results for a given chapter
 | [04](notebooks/04) | Apply various **regularization techniques** to improve model from the previous chapter                | PyTorch Ligthning (PL), Weights & Biases (W&B) |
 | [05](notebooks/05) | **Training from scratch vs Transfer Learning** for satellite image classification on RESISC45 dataset | PyTorch Image Models (TIMM), PL, W&B           |
 | [06](notebooks/06) | Improve models from previous chapter using **data augmentation**                                      | Albumentations, PL, TIMM, W&B                  |
-| [07](notebooks/07) | Run **hyperparamter optimization** (e.g. Optuna) on models from the two previous chapters             | Optuna, PL, TIMM, W&B                          |
+| [07](notebooks/07) | Run **hyperparameter optimization** (e.g. Optuna) on models from the two previous chapters            | Optuna, PL, TIMM, W&B                          |
 | [08](notebooks/08) | **Interpretability** analysis (e.g. occlusion sensitivity and GradCAM) for models from chapters 05-07 | Captum, PL, TIMM, W&B                          |
 | [09](notebooks/09) | Run **Self-Supervised Learning** (SSL) on unlabeled dataset as a pretraining for supervised model     | Lightly, PL, TIMM, W&B                         |
 | [10](notebooks/10) | **Binary classification with imbalanced dataset** (incorporating weighted loss and balanced accuracy) | PL, TIMM, W&B, FiftyOne                        |
