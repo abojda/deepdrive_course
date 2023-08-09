@@ -15,6 +15,6 @@ All below models are finetuned (all layers unfrozen) from transfer learning run 
 
 We can see that data augmentation improved validation accuracy:
 - by ~1.5 percentage points for simple handcrafted pipeline
-- by ~0.5 percentage points for RandAugment with 3 operations
+- by ~0.9 percentage points for RandAugment with 3 operations
 
 compared to reference run (#2).
