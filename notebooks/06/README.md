@@ -8,7 +8,7 @@ All below models are finetuned (all layers unfrozen) from transfer learning run 
 
 1. `resnet50-tl-ft` - reference training (from previous chapter) without LR scheduler (**no augmentation**)
 2. `resnet50-tl-ft_onecycle_lr0.001-drop_0.3` - reference training (**no augmentation**)
-3. `resnet50-tl-ft_onecycle_lr0.0005-drop_0.3-basic_aug` - training with simple `Albumentations` augmentation pipeline defined [here]()
+3. `resnet50-tl-ft_onecycle_lr0.0005-drop_0.3-basic_aug` - training with simple `Albumentations` augmentation pipeline defined [here](https://github.com/abojda/deepdrive_course/blob/9ee692e1f6a8673f3f0b7cf80562ffde684b879a/deepdrive_course/resisc45/transforms.py#L27)
 4. `resnet50-tl-ft_onecycle_lr0.0005-drop_0.3-randaugment` - training with `torchvision.RandAugment(num_ops=3)`
 
 ![augmentation_results](img/augmentation_results.png)
